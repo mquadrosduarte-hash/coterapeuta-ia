@@ -232,7 +232,7 @@ Seu co-terapeuta de Terapia dos Esquemas
 
 /* ---------- CONFIGURAÇÃO ---------- */
 
-const API_URL = "https://script.google.com/macros/s/AKfycbwoQb2CdsLYUNIJhhXCDKPkv0T_pg_JIzRS4DGKa0t9OdIkGRFcCNyPJc8WQ88I_ME3/exec"
+const API_URL = "https://script.google.com/macros/s/AKfycbzwc_VaQKlBNXnu6dSpr3bp-u_B_GJucMDDGdlSOvjbxaoKOFk_j6atFCt6oNjHRrnO/exec"
 
 /* ---------- LOGIN ---------- */
 
@@ -245,7 +245,8 @@ try{
 
 const res = await fetch(API_URL,{
 method:"POST",
-body:JSON.stringify({
+mode:"no-cors",
+body:new URLSearchParams({
 action:"login",
 user:user,
 password:password
@@ -305,7 +306,8 @@ try{
 
 const res = await fetch(API_URL,{
 method:"POST",
-body:JSON.stringify({
+mode:"no-cors",
+body:new URLSearchParams({
 action:"chat",
 message:text
 })
