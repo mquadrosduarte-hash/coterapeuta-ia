@@ -232,7 +232,7 @@ Seu co-terapeuta de Terapia dos Esquemas
 
 /* ---------- CONFIGURAÇÃO ---------- */
 
-const API_URL = "https://script.google.com/macros/s/AKfycbwoQb2CdsLYUNIJhhXCDKPkv0T_pg_JIzRS4DGKa0t9OdIkGRFcCNyPJc8WQ88I_ME3/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwoQb2CdsLYUNIJhhXCDKPkv0T_pg_JIzRS4DGKa0t9OdIkGRFcCNyPJc8WQ88I_ME3/exec"
 
 /* ---------- LOGIN ---------- */
 
@@ -240,6 +240,8 @@ async function login(){
 
 const user = document.getElementById("user").value
 const password = document.getElementById("password").value
+
+try{
 
 const res = await fetch(API_URL,{
 method:"POST",
@@ -260,6 +262,13 @@ document.getElementById("chatBox").classList.remove("hidden")
 }else{
 
 document.getElementById("loginError").innerText="Usuário ou senha inválidos"
+
+}
+
+}catch(err){
+
+console.error(err)
+document.getElementById("loginError").innerText="Erro de conexão com o servidor"
 
 }
 
@@ -292,18 +301,26 @@ addMessage("Você: " + text,"user")
 
 input.value=""
 
+try{
+
 const res = await fetch(API_URL,{
 method:"POST",
 body:JSON.stringify({
-action:"login",
-user:user,
-password:password
+action:"chat",
+message:text
 })
 })
 
-const data = await response.json()
+const data = await res.json()
 
 addMessage("IA: " + data.reply,"bot")
+
+}catch(err){
+
+console.error(err)
+addMessage("Erro ao conectar com o servidor","bot")
+
+}
 
 }
 
