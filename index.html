@@ -243,7 +243,6 @@ const password = document.getElementById("password").value
 
 const res = await fetch(API_URL,{
 method:"POST",
-headers:{ "Content-Type":"application/json" },
 body:JSON.stringify({
 action:"login",
 user:user,
@@ -293,12 +292,12 @@ addMessage("Você: " + text,"user")
 
 input.value=""
 
-const response = await fetch(API_URL,{
+const res = await fetch(API_URL,{
 method:"POST",
-headers:{ "Content-Type":"application/json" },
 body:JSON.stringify({
-action:"chat",
-message:text
+action:"login",
+user:user,
+password:password
 })
 })
 
